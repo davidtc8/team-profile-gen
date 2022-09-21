@@ -1,13 +1,20 @@
 // Bringing all the modules 
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
+const generateHTML = require('./src/generateHTML');
 
 // Variables
-let companyMembers = [];
+let managerInfo = [];
+let teamInfo = [];
+let companyName;
 
 // Questions about the engineering team
 function initializer() {
-    inquirer.prompt({
+    // Asking about the company name
+    inquirer.prompt([{
         type: 'input',
         message: 'What is the name of your company?',
         name: 'companyName',
@@ -18,9 +25,209 @@ function initializer() {
                 console.log('Please enter your company name')
             }
         }
-    })
+    },
+    // ------- Creating the manager -------
+    {
+        type: 'input',
+        message: "What's the manager name?",
+        name: 'managerName',
+        validate: managerName => {
+            if (managerName) {
+                return true
+            } else {
+                console.log("Please enter the manager's name")
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the employee ID?",
+        name: 'employeeID',
+        validate: employeeID => {
+            if (employeeID) {
+                return true
+            } else {
+                console.log("Please enter the employee ID")
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the office number?",
+        name: 'officeNumber',
+        validate: officeNumber => {
+            if (officeNumber) {
+                return true
+            } else {
+                console.log("Please enter the office number")
+            }
+        }
+    }])
     .then(answers => {
-        companyMembers.push(answers.companyName);
-
+        // Assigning the company name to the variable
+        companyName = answers.companyName
+        managerInfo.push(answers.managerName, answers.employeeID, answers.officeNumber);
+        selectTeamMember()
     })
 }
+
+function selectTeamMember() {
+    inquirer.prompt({
+        type: 'list',
+        message: 'What type of employee would you like to hire?',
+        choices: ['Engineer', 'Intern'],
+        name: 'employeeHire'
+    })
+    .then(answers => {
+        switch(answers.employeeHire) {
+            case 'Engineer':
+                hireEngineer();
+                break;
+            case 'Intern':
+                hireIntern();
+                break;
+        }
+    })
+}
+
+function hireEngineer() {
+    inquirer.prompt([{
+        type: 'input',
+        message: "What's the engineer name?",
+        name: 'engineerName',
+        validate: engineerName => {
+            if (engineerName) {
+                return true
+            } else {
+                console.log("Please enter engineer's name")
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the engineer ID?",
+        name: 'engineerID',
+        validate: engineerID => {
+            if (engineerID) {
+                return true
+            } else {
+                console.log('Please enter the engineer ID')
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the engineer email?",
+        name: 'engineerEmail',
+        validate: engineerEmail => {
+            if (engineerEmail) {
+                return true
+            } else {
+                console.log('Please enter the engineer email')
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the engineer GitHub Username?",
+        name: 'engineerGithub',
+        validate: engineerGithub => {
+            if (engineerGithub) {
+                return true
+            } else {
+                console.log('Please enter the GitHub username')
+            }
+        }
+    }])
+    .then(answers => {
+        teamInfo.push(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub)
+        selectAnotherTeamMember();
+    })
+}
+
+function hireIntern() {
+    inquirer.prompt([{
+        type: 'input',
+        message: "What's the engineer name?",
+        name: 'internName',
+        validate: internName => {
+            if (internName) {
+                return true
+            } else {
+                console.log("Please enter intern name")
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the intern ID?",
+        name: 'internID',
+        validate: internID => {
+            if (internID) {
+                return true
+            } else {
+                console.log('Please enter the intern ID')
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the intern email?",
+        name: 'internEmail',
+        validate: internEmail => {
+            if (internEmail) {
+                return true
+            } else {
+                console.log('Please enter the intern email')
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: "What's the intern School?",
+        name: 'internSchool',
+        validate: internSchool => {
+            if (internSchool) {
+                return true
+            } else {
+                console.log('Please enter the intern school')
+            }
+        }
+    }])
+    .then(answers => {
+        teamInfo.push(answers.internName, answers.internID, answers.internEmail, answers.internGithub)
+        selectAnotherTeamMember();
+    })
+}
+
+function selectAnotherTeamMember() {
+    inquirer.prompt({
+        type: 'list',
+        message: 'Would you like to hire someone else for your team?',
+        choices: ['Yes', 'No'],
+        name: 'employeeHire'
+    })
+    .then(answers => {
+        if (answers.choices === 'Yes') {
+            selectTeamMember();
+        }
+        else{
+            callGenerateHTML();
+        }
+    })
+}
+
+function callGenerateHTML() {
+    fs.writeFile('./dist/team.html',generateHTML(companyName, managerInfo, teamInfo),  err => {
+        if (err) {
+          console.error(err);
+        }
+        console.log('File written successfully!')
+      });
+}
+
+initializer();
+
+// TODO: CREATE THE MISSING TESTS
+// TODO: Create the logic for the HTML File
+// TODO: Creat the team.html in the "dist" folder
