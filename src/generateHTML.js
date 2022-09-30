@@ -20,9 +20,9 @@ function internCard(data) {
         <h5 class="card-title">${data.internName}</h5>
         <p class="card-text">
             <ul>
-                <li>$ID: {data.internID}</li>
-                <li>$Email: {data.internEmail}</li>
-                <li>$School: {data.school}</li>
+                <li>ID: ${data.internID}</li>
+                <li>Email: ${data.internEmail}</li>
+                <li>School: ${data.school}</li>
             </ul>
         </p>
     </div>
@@ -36,9 +36,9 @@ function engineerCard(data) {
         <h5 class="card-title">${data.engineerName}</h5>
         <p class="card-text">
             <ul>
-                <li>$ID: {data.engineerID}</li>
-                <li>$Email: {data.engineerEmail}</li>
-                <li>$GitHub: {data.engineerGithub}</li>
+                <li>ID: ${data.engineerID}</li>
+                <li>Email: ${data.engineerEmail}</li>
+                <li>GitHub: ${data.engineerGithub}</li>
             </ul>
         </p>
     </div>
@@ -63,16 +63,19 @@ function generateHTML(companyName ,managerInfo, teamInfo) {
     <div class="foo">
         My team!
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="
+    width: 70%;
+    margin: auto;
+    ">
         <div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;margin: 20px;">
             <div class="card-header">Manager 💼</div>
                 <div class="card-body text-primary">
                 <h5 class="card-title">${managerInfo[0]}</h5>
                 <p class="card-text">
                     <ul>
-                        <li>$ID: {managerInfo[2]}</li>
-                        <li>$Email: {managerInfo[1]}</li>
-                        <li>$Office Number: {managerInfo[3]}</li>
+                        <li>ID: ${managerInfo[2]}</li>
+                        <li>Email: ${managerInfo[1]}</li>
+                        <li>Office Number: ${managerInfo[3]}</li>
                     </ul>
                 </p>
             </div>
