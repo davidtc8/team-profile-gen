@@ -39,3 +39,7 @@ MIT
 
 # Image
 ![alt text](./dist/images/team-profile-gen.png "Webpage that this script creates")
+
+# Video
+https://user-images.githubusercontent.com/71146674/193332052-7c5be72a-b223-4c8f-9c74-85658f9bd8c5.mp4
+
