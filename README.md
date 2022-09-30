@@ -1,5 +1,5 @@
 # Team profile Gen
-![license image](https://img.shields.io/badge/license-MIT-brightgreen.svg)
+##![license image](https://img.shields.io/badge/license-MIT-brightgreen.svg)
 Node.js command-line app that takes information about employees on a Software Engineering Team and generates an HTML webpage that displays the information about each person.
 
 # Table of Contents
