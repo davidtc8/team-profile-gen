@@ -38,4 +38,4 @@ MIT
 - Here's my email in case you want to write me: davidtorres@gmail.com
 
 # Image
-[image]: ./dist/images/team-profile-gen.png "Website that the script generates"
+![alt text](./dist/images/team-profile-gen.png "Webpage that this script creates")
