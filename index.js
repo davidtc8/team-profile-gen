@@ -10,6 +10,7 @@ const generateHTML = require('./src/generateHTML');
 let managerInfo = [];
 let teamInfo = [];
 let companyName;
+let teammateNum = 0
 
 // Questions about the engineering team
 function initializer() {
@@ -41,6 +42,18 @@ function initializer() {
     },
     {
         type: 'input',
+        message: "What's the manager email?",
+        name: 'managerEmail',
+        validate: managerEmail => {
+            if (managerEmail) {
+                return true
+            } else {
+                console.log("Please enter the manager email")
+            }
+        }
+    },
+    {
+        type: 'input',
         message: "What's the employee ID?",
         name: 'employeeID',
         validate: employeeID => {
@@ -66,7 +79,7 @@ function initializer() {
     .then(answers => {
         // Assigning the company name to the variable
         companyName = answers.companyName
-        managerInfo.push(answers.managerName, answers.employeeID, answers.officeNumber);
+        managerInfo.push(answers.managerName, answers.managerEmail, answers.employeeID, answers.officeNumber);
         selectTeamMember()
     })
 }
@@ -140,7 +153,8 @@ function hireEngineer() {
         }
     }])
     .then(answers => {
-        teamInfo.push(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub)
+        let engineer = {typeofEmployee: "Engineer", engineerName: answers.engineerName, engineerID: answers.engineerID, engineerEmail: answers.engineerEmail, engineerGithub: answers.engineerGithub}
+        teamInfo.push(engineer)
         selectAnotherTeamMember();
     })
 }
@@ -195,7 +209,8 @@ function hireIntern() {
         }
     }])
     .then(answers => {
-        teamInfo.push(answers.internName, answers.internID, answers.internEmail, answers.internGithub)
+        let intern = {typeofEmployee: "Intern", internName: answers.internName, internID: answers.internID, internEmail: answers.internEmail, school: answers.internSchool}
+        teamInfo.push(intern)
         selectAnotherTeamMember();
     })
 }
@@ -208,7 +223,8 @@ function selectAnotherTeamMember() {
         name: 'employeeHire'
     })
     .then(answers => {
-        if (answers.choices === 'Yes') {
+        if (answers.employeeHire === 'Yes') {
+            teammateNum += 1
             selectTeamMember();
         }
         else{
