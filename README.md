@@ -36,3 +36,6 @@ MIT
 # Questions
 - Here's my GitHub Profile in case you want to reach out!: https://github.com/davidtc8
 - Here's my email in case you want to write me: davidtorres@gmail.com
+
+# Image
+![alt text](./dist/images/team-profile-gen.png "Webpage that this script creates")
