@@ -9,6 +9,15 @@ Node.js command-line app that takes information about employees on a Software En
 - [Go to test instructions section](#-test-instructions)
 - [Go to questions section](#-questions)
 
+# Concepts applied
+- [x] Node JS 🖥️
+
+- [x] Terminal Commands 🤔
+
+- [x] File creation and file management 🔒
+
+- [x] Javascript 🖥️
+
 # Installation
 Run the Index.js on your terminal or on IDE that supports Node.JS
 
@@ -19,7 +28,7 @@ He can use it if he wants a way to visualize his/her team
 David Torres
 
 # Test Instructions
-None
+There are some test about each class in the __test__ folder
 
 # License
 MIT
