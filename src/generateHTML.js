@@ -14,28 +14,32 @@ function createBootstrapCard(managerInfo, teamInfo) {
 }
 
 function internCard(data) {
-    return `<div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">${data.typeofEmployee}</div>
+    return `<div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;margin: 20px;">
+    <div class="card-header">${data.typeofEmployee} 🎒</div>
     <div class="card-body text-primary">
         <h5 class="card-title">${data.internName}</h5>
         <p class="card-text">
-            ${data.internID}
-            ${data.internEmail}
-            ${data.school}
+            <ul>
+                <li>$ID: {data.internID}</li>
+                <li>$Email: {data.internEmail}</li>
+                <li>$School: {data.school}</li>
+            </ul>
         </p>
     </div>
     </div>`
 }
 
 function engineerCard(data) {
-    return `<div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">${data.typeofEmployee}</div>
+    return `<div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;margin: 20px;">
+    <div class="card-header">${data.typeofEmployee} ⚙️</div>
     <div class="card-body text-primary">
         <h5 class="card-title">${data.engineerName}</h5>
         <p class="card-text">
-            ${data.engineerID}
-            ${data.engineerEmail}
-            ${data.engineerGithub}
+            <ul>
+                <li>$ID: {data.engineerID}</li>
+                <li>$Email: {data.engineerEmail}</li>
+                <li>$GitHub: {data.engineerGithub}</li>
+            </ul>
         </p>
     </div>
     </div>`
@@ -60,14 +64,16 @@ function generateHTML(companyName ,managerInfo, teamInfo) {
         My team!
     </div>
     <div class="row justify-content-center">
-        <div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Manager</div>
+        <div class="col-4 ml-6 card border-primary mb-3" style="max-width: 18rem;margin: 20px;">
+            <div class="card-header">Manager 💼</div>
                 <div class="card-body text-primary">
                 <h5 class="card-title">${managerInfo[0]}</h5>
                 <p class="card-text">
-                    ${managerInfo[2]}
-                    ${managerInfo[1]}
-                    ${managerInfo[3]}
+                    <ul>
+                        <li>$ID: {managerInfo[2]}</li>
+                        <li>$Email: {managerInfo[1]}</li>
+                        <li>$Office Number: {managerInfo[3]}</li>
+                    </ul>
                 </p>
             </div>
         </div>
